@@ -7,6 +7,6 @@
   "require": {
     "php": ">=5.6.4",
     "dekodeinteraktiv/hogan-core": "@dev",
-    "dannyvanholten/acf-gravityforms-add-on": "^1.2"
+	"wpackagist-plugin/acf-gravityforms-add-on": "^1.2"
   }
 }
