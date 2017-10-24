@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Form ) ) {
 	<article class="columns">
 		<h2><?php echo esc_html( $this->heading ); ?></h2>
 		<?php
-		if ( function_exists( 'gravity_form' ) && $this->form ) :
+		if ( $this->form ) :
 			gravity_form( trim( $this->form ), false, false, false, '', true );
 		endif;
 		?>

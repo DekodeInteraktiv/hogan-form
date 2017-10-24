@@ -22,10 +22,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once 'class-form.php';
 
-add_action( 'plugins_loaded', function() {
-	load_plugin_textdomain( 'hogan-form', false, '/languages' );
-} );
+// Only load module if dependant plugins are active.
+if ( function_exists( 'gravity_form' ) && class_exists( 'ACFGravityformsField\Field' ) ) {
 
-add_action( 'hogan/include_modules', function() {
-	hogan_register_module( new \Dekode\Hogan\Form() );
-} );
+	add_action( 'plugins_loaded', function() {
+		load_plugin_textdomain( 'hogan-form', false, '/languages' );
+	} );
+
+	add_action( 'hogan/include_modules', function() {
+		hogan_register_module( new \Dekode\Hogan\Form() );
+	} );
+}
