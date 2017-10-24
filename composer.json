@@ -1,11 +1,11 @@
 {
   "name": "dekodeinteraktiv/hogan-form",
-  "description": "Form Module for Hogan",
+  "description": "Gravity Forms Module for Hogan",
   "homepage": "https://github.com/dekodeinteraktiv/hogan-form",
   "type": "wordpress-plugin",
   "license": "GPL-3.0",
   "require": {
     "php": ">=5.5",
-    "dekodeinteraktiv/hogan-core": "@dev",
+    "dekodeinteraktiv/hogan-core": "@dev"
   }
 }
