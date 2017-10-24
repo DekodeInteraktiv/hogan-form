@@ -4,24 +4,179 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "aaf25d10cafe0daa5ac1d70bae68bb8d",
+    "content-hash": "e4d92266b7c738882766ab3004cc6a74",
     "packages": [
+        {
+            "name": "composer/installers",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
+                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
+                "MODX Evo",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Thelia",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "eZ Platform",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "osclass",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "time": "2017-08-09T07:53:48+00:00"
+        },
+        {
+            "name": "dannyvanholten/acf-gravityforms-add-on",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DannyvanHolten/acf-gravityforms-add-on.git",
+                "reference": "dd999e7b9b921731acf599159bfa07ef01ec44b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DannyvanHolten/acf-gravityforms-add-on/zipball/dd999e7b9b921731acf599159bfa07ef01ec44b1",
+                "reference": "dd999e7b9b921731acf599159bfa07ef01ec44b1",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0",
+                "php": ">=5.6.4"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "ACFGravityformsField\\": "resources/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Danny van Holten",
+                    "email": "info@dannyvanholten.com",
+                    "homepage": "http://www.dannyvanholten.com/"
+                }
+            ],
+            "description": "Advanced Custom Fields: Gravityforms Add-on",
+            "time": "2017-10-04T12:50:44+00:00"
+        },
         {
             "name": "dekodeinteraktiv/hogan-core",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DekodeInteraktiv/hogan-core.git",
-                "reference": "456f3b90d9b9778a0fde9a269639ad58b8a7f64a"
+                "reference": "3f8aef4ed4c55a6305ee01972f9761dd3fa552ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/456f3b90d9b9778a0fde9a269639ad58b8a7f64a",
-                "reference": "456f3b90d9b9778a0fde9a269639ad58b8a7f64a",
+                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/3f8aef4ed4c55a6305ee01972f9761dd3fa552ed",
+                "reference": "3f8aef4ed4c55a6305ee01972f9761dd3fa552ed",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": ">=5.5"
             },
             "type": "wordpress-plugin",
             "notification-url": "https://packagist.org/downloads/",
@@ -30,7 +185,7 @@
             ],
             "description": "Modular Flexible Content System",
             "homepage": "https://github.com/DekodeInteraktiv/hogan-core",
-            "time": "2017-10-23T08:46:51+00:00"
+            "time": "2017-10-24T10:35:18+00:00"
         }
     ],
     "packages-dev": [],
@@ -42,7 +197,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5"
+        "php": ">=5.6.4"
     },
     "platform-dev": []
 }
