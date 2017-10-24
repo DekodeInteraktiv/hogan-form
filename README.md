@@ -7,3 +7,5 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-form`
 …
 
 ## Available filters
+- `hogan/module/form/template` for overriding the default template file.
+- `hogan/module/form/wrapper_classes` for HTML wrapper CSS classes.
