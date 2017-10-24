@@ -1,0 +1,48 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "aaf25d10cafe0daa5ac1d70bae68bb8d",
+    "packages": [
+        {
+            "name": "dekodeinteraktiv/hogan-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DekodeInteraktiv/hogan-core.git",
+                "reference": "456f3b90d9b9778a0fde9a269639ad58b8a7f64a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/456f3b90d9b9778a0fde9a269639ad58b8a7f64a",
+                "reference": "456f3b90d9b9778a0fde9a269639ad58b8a7f64a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "Modular Flexible Content System",
+            "homepage": "https://github.com/DekodeInteraktiv/hogan-core",
+            "time": "2017-10-23T08:46:51+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "dekodeinteraktiv/hogan-core": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.5"
+    },
+    "platform-dev": []
+}
