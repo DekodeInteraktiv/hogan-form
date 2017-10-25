@@ -19,7 +19,8 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Form ) ) {
 		<h2><?php echo esc_html( $this->heading ); ?></h2>
 		<?php
 		if ( $this->form ) :
-			gravity_form( trim( $this->form ), false, false, false, '', true );
+			// Params: id, title, description, display inactive, dynamic params, ajax, tabindex, echo.
+			gravity_form( $this->form, false, false, false, '', true );
 		endif;
 		?>
 	</article>
