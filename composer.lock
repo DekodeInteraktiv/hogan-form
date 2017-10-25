@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4d92266b7c738882766ab3004cc6a74",
+    "content-hash": "37450c075feb1b5e1db68fcaf9f4d5b9",
     "packages": [
         {
             "name": "composer/installers",
@@ -124,55 +124,17 @@
             "time": "2017-08-09T07:53:48+00:00"
         },
         {
-            "name": "dannyvanholten/acf-gravityforms-add-on",
-            "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DannyvanHolten/acf-gravityforms-add-on.git",
-                "reference": "dd999e7b9b921731acf599159bfa07ef01ec44b1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DannyvanHolten/acf-gravityforms-add-on/zipball/dd999e7b9b921731acf599159bfa07ef01ec44b1",
-                "reference": "dd999e7b9b921731acf599159bfa07ef01ec44b1",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "^1.0",
-                "php": ">=5.6.4"
-            },
-            "type": "wordpress-plugin",
-            "autoload": {
-                "psr-4": {
-                    "ACFGravityformsField\\": "resources/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Danny van Holten",
-                    "email": "info@dannyvanholten.com",
-                    "homepage": "http://www.dannyvanholten.com/"
-                }
-            ],
-            "description": "Advanced Custom Fields: Gravityforms Add-on",
-            "time": "2017-10-04T12:50:44+00:00"
-        },
-        {
             "name": "dekodeinteraktiv/hogan-core",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DekodeInteraktiv/hogan-core.git",
-                "reference": "3f8aef4ed4c55a6305ee01972f9761dd3fa552ed"
+                "reference": "4882410ba92a2f715e1a3850f25fffdb05da57e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/3f8aef4ed4c55a6305ee01972f9761dd3fa552ed",
-                "reference": "3f8aef4ed4c55a6305ee01972f9761dd3fa552ed",
+                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/4882410ba92a2f715e1a3850f25fffdb05da57e5",
+                "reference": "4882410ba92a2f715e1a3850f25fffdb05da57e5",
                 "shasum": ""
             },
             "require": {
@@ -183,9 +145,29 @@
             "license": [
                 "GPL-3.0"
             ],
-            "description": "Modular Flexible Content System",
+            "description": "Modular Flexible Content System for ACF Pro",
             "homepage": "https://github.com/DekodeInteraktiv/hogan-core",
-            "time": "2017-10-24T10:35:18+00:00"
+            "time": "2017-10-24T14:48:19+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/acf-gravityforms-add-on",
+            "version": "1.2.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/acf-gravityforms-add-on/",
+                "reference": "tags/1.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/acf-gravityforms-add-on.1.2.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/acf-gravityforms-add-on/"
         }
     ],
     "packages-dev": [],
@@ -197,7 +179,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.4"
+        "php": ">=5.5"
     },
     "platform-dev": []
 }

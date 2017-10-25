@@ -4,9 +4,15 @@
   "homepage": "https://github.com/dekodeinteraktiv/hogan-form",
   "type": "wordpress-plugin",
   "license": "GPL-3.0",
+  "repositories": [
+	  {
+		  "type": "composer",
+		  "url": "https://wpackagist.org"
+	  }
+  ],
   "require": {
-    "php": ">=5.6.4",
-    "dekodeinteraktiv/hogan-core": "@dev",
-    "dannyvanholten/acf-gravityforms-add-on": "^1.2"
+	  "php": ">=5.5",
+	  "dekodeinteraktiv/hogan-core": "@dev",
+	  "wpackagist-plugin/acf-gravityforms-add-on": "^1.2"
   }
 }
