@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hogan Module: Form\n"
+"POT-Creation-Date: 2017-10-25 10:53+0200\n"
+"PO-Revision-Date: 2017-10-25 10:54+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: hogan-form.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: class-form.php:42
+msgid "Form"
+msgstr "Skjema"
+
+#: class-form.php:62
+msgid "Overskrift"
+msgstr "Overskrift"
+
+#: class-form.php:68
+msgid "Velg skjema"
+msgstr "Velg skjema"
+
+#: class-form.php:70
+msgid ""
+"Skjema må opprettes under menypunktet <a href=\"/wp/wp-admin/admin.php?"
+"page=gf_edit_forms\">Skjemaer</a> før det kan legges til her."
+msgstr ""
+"Skjema må opprettes under menypunktet <a href=\"/wp/wp-admin/admin.php?"
+"page=gf_edit_forms\">Skjemaer</a> før det kan legges til her."
+
+#. Plugin Name of the plugin/theme
+msgid "Hogan Module: Form"
+msgstr "Hogan-modul: Skjema"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/dekodeinteraktiv/hogan-form"
+msgstr "https://github.com/dekodeinteraktiv/hogan-form"
+
+#. Description of the plugin/theme
+msgid "Form Module for Hogan, requires Gravity Forms."
+msgstr "Skjemamodul for Hogan, krever Gravity Forms."
+
+#. Author of the plugin/theme
+msgid "Dekode"
+msgstr "Dekode"
+
+#. Author URI of the plugin/theme
+msgid "https://dekode.no"
+msgstr "https://dekode.no"
