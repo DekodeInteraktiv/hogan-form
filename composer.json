@@ -13,6 +13,7 @@
   "require": {
 	  "php": ">=5.5",
 	  "dekodeinteraktiv/hogan-core": "@dev",
-	  "wpackagist-plugin/acf-gravityforms-add-on": "^1.2"
+	  "wpackagist-plugin/acf-gravityforms-add-on": "^1.2",
+    "composer/installers": "~1.2"
   }
 }

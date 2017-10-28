@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37450c075feb1b5e1db68fcaf9f4d5b9",
+    "content-hash": "2e0561b388bf5f01815f9afbcb639ae4",
     "packages": [
         {
             "name": "composer/installers",
@@ -129,15 +129,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/DekodeInteraktiv/hogan-core.git",
-                "reference": "4882410ba92a2f715e1a3850f25fffdb05da57e5"
+                "reference": "c10d95d6979e264f45e62a353056ad401184d371"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/4882410ba92a2f715e1a3850f25fffdb05da57e5",
-                "reference": "4882410ba92a2f715e1a3850f25fffdb05da57e5",
+                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/c10d95d6979e264f45e62a353056ad401184d371",
+                "reference": "c10d95d6979e264f45e62a353056ad401184d371",
                 "shasum": ""
             },
             "require": {
+                "composer/installers": "~1.2",
                 "php": ">=5.5"
             },
             "type": "wordpress-plugin",
@@ -147,7 +148,7 @@
             ],
             "description": "Modular Flexible Content System for ACF Pro",
             "homepage": "https://github.com/DekodeInteraktiv/hogan-core",
-            "time": "2017-10-24T14:48:19+00:00"
+            "time": "2017-10-28T11:28:17+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-gravityforms-add-on",
