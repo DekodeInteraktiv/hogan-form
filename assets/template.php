@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Form ) ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( implode( ' ', array_filter( $this->wrapper_classes ) ) ); ?>">
+<section class="<?php echo esc_attr( $this->get_wrapper_classes( true ) ); ?>">
 	<article class="columns">
 		<?php
 		if ( ! empty( $this->heading ) ) {
