@@ -16,16 +16,27 @@
  * @author Dekode
  */
 
+namespace Dekode\Hogan\Form;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 require_once 'class-form.php';
 
-add_action( 'plugins_loaded', function () {
-	load_plugin_textdomain( 'hogan-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-} );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\\hogan_load_textdomain' );
+add_action( 'hogan/include_modules', __NAMESPACE__ . '\\hogan_register_module' );
 
-add_action( 'hogan/include_modules', function () {
-	hogan_register_module( new \Dekode\Hogan\Form() );
-} );
+/**
+ * Register module text domain
+ */
+function hogan_load_textdomain() {
+	\load_plugin_textdomain( 'hogan-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+
+/**
+ * Register module in Hogan
+ */
+function hogan_register_module() {
+	\hogan_register_module( new \Dekode\Hogan\Form() );
+}
