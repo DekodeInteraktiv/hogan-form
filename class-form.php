@@ -21,13 +21,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 	class Form extends Module {
 
 		/**
-		 * Form plugin used for this module (Gravity Form or Contact Form 7)
-		 *
-		 * @var $form_plugin
-		 */
-		public $form_plugin;
-
-		/**
 		 * Form id for use in template.
 		 *
 		 * @var $form
@@ -46,22 +39,17 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 */
 		public function __construct() {
 
-			$this->label       = __( 'Form', 'hogan-form' );
-			$this->template    = __DIR__ . '/assets/template.php';
-			$this->form_plugin = apply_filters( 'hogan/module/form/plugin_type', 'gravityform' ); //gravityform || cf7
+			$this->label    = __( 'Form', 'hogan-form' );
+			$this->template = __DIR__ . '/assets/template.php';
 
 			parent::__construct();
 
+			// Populate select field with options.
+			add_filter( 'acf/load_field/key=' . $this->field_key . '_id', [
+				$this,
+				'acf_load_field_choices',
+			] );
 
-			// Only load gravity module if dependant plugins are active.
-			if ( 'gravityform' !== $this->form_plugin || ( function_exists( 'gravity_form' ) && class_exists( 'ACFGravityformsField\Field' ) ) ) {
-
-				// Populate select field with options.
-				add_filter( 'acf/load_field/key=' . $this->field_key . '_id', [
-					$this,
-					'acf_load_field_choices',
-				] );
-			}
 		}
 
 		/**
@@ -71,8 +59,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 			// reset choices
 			$field['choices'] = [];
 
-			//fetch Contact Form 7 forms
-			if ( true === post_type_exists( 'wpcf7_contact_form' ) ) :
+			// Check for Contact Form 7 and fetch forms
+			if ( true === $this->_is_contact_form_7_active() ) :
 				$args  = [
 					'posts_per_page'         => 30,
 					'no_found_rows'          => true,
@@ -87,20 +75,20 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 					while ( $query->have_posts() ) {
 						$query->the_post();
 						// Contents of the queried post results go here.
-						$field['choices']['Contact Form 7'][ get_the_ID() ] = get_the_title();
+						$field['choices']['Contact Form 7'][ 'cf7-' . get_the_ID() ] = get_the_title();
 					}
 				}
 
 				wp_reset_postdata(); // Restore original post data.
 			endif;
 
-			// check for plugin activated
-			if ( is_plugin_active( 'gravityforms/gravityforms.php' ) && class_exists( '\GFAPI' ) ) :
+			// Check for Gravityform and fetch forms
+			if ( true === $this->_is_gravityforms_active() && class_exists( '\GFAPI' ) ) :
 				$forms = \GFAPI::get_forms();
 				if ( is_array( $forms ) && ! empty( $forms ) ) :
 					$field['choices']['Gravityform'] = [];
 					foreach ( $forms as $form ) {
-						$field['choices']['Gravityform'][ $form['id'] ] = $form['title'];
+						$field['choices']['Gravityform'][ 'gf-' . $form['id'] ] = $form['title'];
 					}
 				endif;
 			endif;
@@ -111,6 +99,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 
 		/**
 		 * Field definitions for module.
+		 *
+		 * @return array $fields Fields for this module
 		 */
 		public function get_fields() {
 
@@ -118,16 +108,16 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 				[
 					'type'  => 'text',
 					'key'   => $this->field_key . '_heading', // hogan_module_form_heading.
-					'label' => esc_html__( 'Overskrift', 'hogan-form' ),
+					'label' => esc_html__( 'Heading', 'hogan-form' ),
 					'name'  => 'heading',
 				],
 			];
 			$fields[] = [
 				'type'          => 'select',
 				'key'           => $this->field_key . '_id', // hogan_module_form_id.
-				'label'         => esc_html__( 'Velg skjema', 'hogan-form' ),
+				'label'         => esc_html__( 'Choose form', 'hogan-form' ),
 				'name'          => 'form_value',
-				'instructions'  => '',
+				'instructions'  => '', //todo?
 				'choices'       => [],
 				'default_value' => [],
 				'ui'            => 1,
@@ -144,11 +134,71 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @param array $content The content value.
 		 */
 		public function load_args_from_layout_content( $content ) {
-
 			$this->heading = $content['heading'];
-			$this->form    = $content['form_value'];
+			$this->form    = $this->get_form_html( $content['form_value'] );
 
 			parent::load_args_from_layout_content( $content );
 		}
+
+		/**
+		 * Validate module content before template is loaded.
+		 *
+		 * @return bool Whether validation of the module is successful / filled with content .
+		 */
+		public function validate_args() {
+			return ! empty( $this->form ); //note: could be improved, eg. Missing contact form 7 will return '[contact-form-7 404 "Not Found"]'
+		}
+
+		protected function get_form_html( $form_value ) {
+			//break string into array to find type and id
+			$form_value_array = explode( '-', $form_value ); //E.g. $form_value = 'gf-7'
+
+			if ( 'gf' === $form_value_array[0] && true === $this->_is_gravityforms_active() ) { //type = Gravityforms and active plugin
+				$gs_defaults = [
+					'display_title'       => true,
+					'display_description' => true,
+					'display_inactive'    => false,
+					'field_values'        => null,
+					'ajax'                => false,
+					'tabindex'            => 1,
+				];
+
+				//Merge $args from filter with $defaults
+				$args = wp_parse_args( apply_filters( 'hogan/module/form/gravityform/options', [], $form_value_array[1] ), $gs_defaults );
+
+				return gravity_form(
+					$form_value_array[1],
+					$args['display_title'],
+					$args['display_description'],
+					$args['display_inactive'],
+					$args['field_values'],
+					$args['ajax'],
+					$args['tabindex'],
+					false
+				);
+			} elseif ( 'cf7' === $form_value_array[0] && true === $this->_is_gravityforms_active() ) { //type = Contact Form 7 and active plugin
+				return do_shortcode( '[contact-form-7 id="' . $form_value_array[1] . '"]' );
+			} else {
+				return false;
+			}
+		}
+
+		/**
+		 * Check if a Contact Form 7 is an active plugin
+		 *
+		 * @return bool Whether the plugin is active is registered.
+		 */
+		private function _is_contact_form_7_active() {
+			return post_type_exists( 'wpcf7_contact_form' );
+		}
+
+		/**
+		 * Check if a Gravityform is an active plugin
+		 *
+		 * @return bool Whether the plugin is active is registered.
+		 */
+		private function _is_gravityforms_active() {
+			return is_plugin_active( 'gravityforms/gravityforms.php' );
+		}
 	}
-}
+} // End if().
