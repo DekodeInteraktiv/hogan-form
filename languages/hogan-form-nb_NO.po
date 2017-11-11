@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hogan Module: Form\n"
-"POT-Creation-Date: 2017-11-11 14:31+0100\n"
-"PO-Revision-Date: 2017-11-11 14:51+0100\n"
+"POT-Creation-Date: 2017-11-11 14:56+0100\n"
+"PO-Revision-Date: 2017-11-11 14:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -25,11 +25,11 @@ msgstr ""
 msgid "Form"
 msgstr "Skjema"
 
-#: class-form.php:111
+#: class-form.php:115
 msgid "Heading"
 msgstr "Overskrift"
 
-#: class-form.php:118
+#: class-form.php:122
 #, fuzzy
 #| msgid "Choose form"
 msgid "Choose Form"
@@ -37,7 +37,7 @@ msgstr "Velg skjema"
 
 #. Plugin Name of the plugin/theme
 msgid "Hogan Module: Form"
-msgstr "Hogan Modul: Skjema"
+msgstr "Hogan-modul: Skjema"
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/dekodeinteraktiv/hogan-form"
