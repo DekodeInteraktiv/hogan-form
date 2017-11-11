@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hogan Module: Form
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
- * Description: Form Module for Hogan, requires Gravity Forms.
+ * Description: Form Module for Hogan, requires Gravity Forms or Contact Form 7.
  * Version: 1.0.0-dev
  * Author: Dekode
  * Author URI: https://dekode.no
