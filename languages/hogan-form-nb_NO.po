@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hogan Module: Form\n"
-"POT-Creation-Date: 2017-11-11 08:57+0100\n"
-"PO-Revision-Date: 2017-11-11 08:58+0100\n"
+"POT-Creation-Date: 2017-11-11 14:31+0100\n"
+"PO-Revision-Date: 2017-11-11 14:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -30,7 +30,9 @@ msgid "Heading"
 msgstr "Overskrift"
 
 #: class-form.php:118
-msgid "Choose form"
+#, fuzzy
+#| msgid "Choose form"
+msgid "Choose Form"
 msgstr "Velg skjema"
 
 #. Plugin Name of the plugin/theme
@@ -43,7 +45,7 @@ msgstr "https://github.com/dekodeinteraktiv/hogan-form"
 
 #. Description of the plugin/theme
 msgid "Form Module for Hogan, requires Gravity Forms or Contact Form 7."
-msgstr "Form Modul for Hogan, krever Gravity Forms eller Contact Form 7."
+msgstr "Skjemamodul for Hogan, krever Gravity Forms eller Contact Form 7."
 
 #. Author of the plugin/theme
 msgid "Dekode"

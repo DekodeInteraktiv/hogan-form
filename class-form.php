@@ -14,21 +14,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 
 	/**
-	 * Form module class (Gravity Form).
+	 * Form module class (Gravity Form or Contact Form 7).
 	 *
 	 * @extends Modules base class.
 	 */
 	class Form extends Module {
 
 		/**
-		 * Form id for use in template.
+		 * Form html output for use in template.
 		 *
 		 * @var $form
 		 */
-		public $form;
+		public $form_html;
 
 		/**
-		 * Form heading for use in template.
+		 * Form heading for use in template (optional).
 		 *
 		 * @var $heading
 		 */
@@ -53,7 +53,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		}
 
 		/**
-		 * @return string
+		 * Populate select field with forms items
+		 *
+		 * @param    $field - the field array holding all the field options
+		 *
+		 * @return    $field - the field array holding all the field options
 		 */
 		public function acf_load_field_choices( $field ) {
 			// reset choices
@@ -115,12 +119,13 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 			$fields[] = [
 				'type'          => 'select',
 				'key'           => $this->field_key . '_id', // hogan_module_form_id.
-				'label'         => esc_html__( 'Choose form', 'hogan-form' ),
+				'label'         => esc_html__( 'Choose Form', 'hogan-form' ),
 				'name'          => 'form_value',
 				'instructions'  => '', //todo?
 				'choices'       => [],
 				'default_value' => [],
 				'ui'            => 1,
+				'required'      => 1,
 				'ajax'          => 0,
 				'return_format' => 'id',
 			];
@@ -134,8 +139,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @param array $content The content value.
 		 */
 		public function load_args_from_layout_content( $content ) {
-			$this->heading = $content['heading'];
-			$this->form    = $this->get_form_html( $content['form_value'] );
+			$this->heading   = $content['heading'];
+			$this->form_html = $this->get_form_html( $content['form_value'] );
 
 			parent::load_args_from_layout_content( $content );
 		}
@@ -146,14 +151,28 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @return bool Whether validation of the module is successful / filled with content .
 		 */
 		public function validate_args() {
-			return ! empty( $this->form ); //note: could be improved, eg. Missing contact form 7 will return '[contact-form-7 404 "Not Found"]'
+			return ! empty( $this->form_html ); //note: could be improved, eg. Missing contact form 7 will return '[contact-form-7 404 "Not Found"]'
 		}
 
+		/**
+		 * Create html for output
+		 *
+		 * @param $form_value Value from the selected field
+		 *
+		 * @return string|bool
+		 */
 		protected function get_form_html( $form_value ) {
 			//break string into array to find type and id
 			$form_value_array = explode( '-', $form_value ); //E.g. $form_value = 'gf-7'
 
-			if ( 'gf' === $form_value_array[0] && true === $this->_is_gravityforms_active() ) { //type = Gravityforms and active plugin
+			if ( count( $form_value_array ) < 2 || ! intval( $form_value_array[1] ) > 0 ) { // Bail early if the second index of the array is not a number
+				return false;
+			}
+
+			$form_plugin = $form_value_array[0];
+			$form_id     = $form_value_array[1];
+
+			if ( 'gf' === $form_plugin && true === $this->_is_gravityforms_active() ) { //type = Gravityforms and active plugin
 				$gs_defaults = [
 					'display_title'       => true,
 					'display_description' => true,
@@ -164,10 +183,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 				];
 
 				//Merge $args from filter with $defaults
-				$args = wp_parse_args( apply_filters( 'hogan/module/form/gravityform/options', [], $form_value_array[1] ), $gs_defaults );
+				$args = wp_parse_args( apply_filters( 'hogan/module/form/gravityform/options', [], $form_id ), $gs_defaults );
 
 				return gravity_form(
-					$form_value_array[1],
+					$form_id,
 					$args['display_title'],
 					$args['display_description'],
 					$args['display_inactive'],
@@ -176,8 +195,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 					$args['tabindex'],
 					false
 				);
-			} elseif ( 'cf7' === $form_value_array[0] && true === $this->_is_gravityforms_active() ) { //type = Contact Form 7 and active plugin
-				return do_shortcode( '[contact-form-7 id="' . $form_value_array[1] . '"]' );
+			} elseif ( 'cf7' === $form_plugin && true === $this->_is_gravityforms_active() ) { //type = Contact Form 7 and active plugin
+				return do_shortcode( '[contact-form-7 id="' . $form_id . '"]' );
 			} else {
 				return false;
 			}

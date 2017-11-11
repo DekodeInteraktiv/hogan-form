@@ -4,7 +4,7 @@
 Install the module using Composer `composer require dekodeinteraktiv/hogan-form` or simply by downloading this repository and placing it in `wp-content/plugins`
 
 ## Usage
-Currently supports Gravityforms and Contact Form 7
+Currently supports Gravity Forms and Contact Form 7
 
 ## Available filters
 - `hogan/module/form/gravityform/options` for passing args to the gravityform render function.
