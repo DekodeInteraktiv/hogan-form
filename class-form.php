@@ -23,7 +23,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		/**
 		 * Form html output for use in template.
 		 *
-		 * @var $form
+		 * @var $form Html content
 		 */
 		public $form_html;
 
@@ -79,7 +79,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 					while ( $query->have_posts() ) {
 						$query->the_post();
 						// Contents of the queried post results go here.
-						$field['choices']['Contact Form 7'][ 'cf7-' . get_the_ID() ] = get_the_title();
+						$field['choices']['Contact Form 7'][ 'cf-' . get_the_ID() ] = get_the_title();
 					}
 				}
 
@@ -172,7 +172,14 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 			$form_plugin = $form_value_array[0];
 			$form_id     = $form_value_array[1];
 
-			if ( 'gf' === $form_plugin && true === $this->_is_gravityforms_active() ) { //type = Gravityforms and active plugin
+			if ( 'gf' === $form_plugin && true === $this->_is_gravityforms_active() && class_exists( '\GFFormsModel' ) ) : //type = Gravityforms and active plugin
+				// Check if form is exists and is active
+				$form_info = \GFFormsModel::get_form( $form_id, false );
+
+				if ( empty( $form_info ) ) { // No published forms - stop
+					return false;
+				}
+
 				$gs_defaults = [
 					'display_title'       => true,
 					'display_description' => true,
@@ -182,9 +189,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 					'tabindex'            => 1,
 				];
 
-				//Merge $args from filter with $defaults
+				// Merge $args from filter with $defaults
 				$args = wp_parse_args( apply_filters( 'hogan/module/form/gravityform/options', [], $form_id ), $gs_defaults );
 
+				// Return html for the selected form. Inactive or deleted forms will return empty string
 				return gravity_form(
 					$form_id,
 					$args['display_title'],
@@ -195,11 +203,21 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 					$args['tabindex'],
 					false
 				);
-			} elseif ( 'cf7' === $form_plugin && true === $this->_is_gravityforms_active() ) { //type = Contact Form 7 and active plugin
-				return do_shortcode( '[contact-form-7 id="' . $form_id . '"]' );
-			} else {
+			elseif ( 'cf' === $form_plugin && true === $this->_is_contact_form_7_active() ) : //type = Contact Form 7 and active plugin
+				// Check if form exists and is active
+				$query = new \WP_Query( array(
+					'p'                      => $form_id,
+					'post_type'              => 'wpcf7_contact_form',
+					'fields'                 => 'ids',
+					'no_found_rows'          => true,
+					'update_post_meta_cache' => false,
+					'update_post_term_cache' => false,
+				) );
+
+				return ( $query->have_posts() ) ? do_shortcode( '[contact-form-7 id="' . $form_id . '"]' ) : false;
+			else :
 				return false;
-			}
+			endif;
 		}
 
 		/**
