@@ -108,14 +108,17 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 */
 		public function get_fields() {
 
-			$fields   = [
-				[
+			$fields = [];
+
+			if ( true === apply_filters( 'hogan/module/form/heading/enabled', true ) ) {
+				$fields[] = [
 					'type'  => 'text',
 					'key'   => $this->field_key . '_heading', // hogan_module_form_heading.
 					'label' => esc_html__( 'Heading', 'hogan-form' ),
 					'name'  => 'heading',
-				],
-			];
+				];
+			}
+
 			$fields[] = [
 				'type'          => 'select',
 				'key'           => $this->field_key . '_id', // hogan_module_form_id.
@@ -139,7 +142,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @param array $content The content value.
 		 */
 		public function load_args_from_layout_content( $content ) {
-			$this->heading   = $content['heading'];
+			$this->heading = $content['heading'] ?? null;
 			$this->form_html = $this->get_form_html( $content['form_value'] );
 
 			parent::load_args_from_layout_content( $content );

@@ -7,7 +7,7 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-form`
 Currently supports Gravity Forms and Contact Form 7
 
 ## Available filters
-- `hogan/module/form/gravityform/options` for passing args to the gravityform render function.
+- `hogan/module/form/gravityform/options` for passing args to the Gravity Forms' render function.
 ```
 //default values
 $gs_defaults = [
