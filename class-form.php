@@ -110,14 +110,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 
 			$fields = [];
 
-			if ( true === apply_filters( 'hogan/module/form/heading/enabled', true ) ) {
-				$fields[] = [
-					'type'  => 'text',
-					'key'   => $this->field_key . '_heading', // hogan_module_form_heading.
-					'label' => esc_html__( 'Heading', 'hogan-form' ),
-					'name'  => 'heading',
-				];
-			}
+			// Heading field can be disabled using filter hogan/module/form/heading/enabled (true/false).
+			hogan_append_heading_field( $fields, $this );
 
 			$fields[] = [
 				'type'          => 'select',
