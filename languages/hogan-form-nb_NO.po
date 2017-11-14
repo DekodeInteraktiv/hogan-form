@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hogan Module: Form\n"
-"POT-Creation-Date: 2017-11-11 14:56+0100\n"
-"PO-Revision-Date: 2017-11-11 14:56+0100\n"
+"POT-Creation-Date: 2017-11-11 14:31+0100\n"
+"PO-Revision-Date: 2017-11-11 14:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -25,11 +25,11 @@ msgstr ""
 msgid "Form"
 msgstr "Skjema"
 
-#: class-form.php:115
+#: class-form.php:111
 msgid "Heading"
 msgstr "Overskrift"
 
-#: class-form.php:122
+#: class-form.php:118
 #, fuzzy
 #| msgid "Choose form"
 msgid "Choose Form"
