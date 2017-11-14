@@ -187,7 +187,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 				];
 
 				// Merge $args from filter with $defaults
-				$args = wp_parse_args( apply_filters( 'hogan/module/form/gravityform/options', [], $form_id ), $gs_defaults );
+				$args = wp_parse_args( apply_filters( 'hogan/module/form/gravityforms/options', [], $form_id ), $gs_defaults );
 
 				// Return html for the selected form. Inactive or deleted forms will return empty string
 				return gravity_form(
@@ -223,16 +223,16 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @return bool Whether the plugin is active is registered.
 		 */
 		private function _is_contact_form_7_active() {
-			return post_type_exists( 'wpcf7_contact_form' );
+			return apply_filters( 'hogan/module/form/gravityforms/enabled', true) && post_type_exists( 'wpcf7_contact_form' );
 		}
 
 		/**
-		 * Check if a Gravityform is an active plugin
+		 * Check if a Gravity Forms is an active plugin
 		 *
 		 * @return bool Whether the plugin is active is registered.
 		 */
 		private function _is_gravityforms_active() {
-			return is_plugin_active( 'gravityforms/gravityforms.php' );
+			return apply_filters( 'hogan/module/form/gravityforms/enabled', true) && is_plugin_active( 'gravityforms/gravityforms.php' );
 		}
 	}
 } // End if().
