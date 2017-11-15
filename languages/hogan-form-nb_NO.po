@@ -1,18 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hogan Module: Form\n"
-"POT-Creation-Date: 2017-10-25 10:53+0200\n"
-"PO-Revision-Date: 2017-10-25 10:54+0200\n"
+"POT-Creation-Date: 2017-11-14 14:00+0100\n"
+"PO-Revision-Date: 2017-11-14 14:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-WPHeader: hogan-form.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: hogan-form.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
@@ -24,21 +25,11 @@ msgstr ""
 msgid "Form"
 msgstr "Skjema"
 
-#: class-form.php:62
-msgid "Overskrift"
-msgstr "Overskrift"
-
-#: class-form.php:68
-msgid "Velg skjema"
+#: class-form.php:119
+#, fuzzy
+#| msgid "Choose form"
+msgid "Choose Form"
 msgstr "Velg skjema"
-
-#: class-form.php:70
-msgid ""
-"Skjema må opprettes under menypunktet <a href=\"/wp/wp-admin/admin.php?"
-"page=gf_edit_forms\">Skjemaer</a> før det kan legges til her."
-msgstr ""
-"Skjema må opprettes under menypunktet <a href=\"/wp/wp-admin/admin.php?"
-"page=gf_edit_forms\">Skjemaer</a> før det kan legges til her."
 
 #. Plugin Name of the plugin/theme
 msgid "Hogan Module: Form"
@@ -49,8 +40,8 @@ msgid "https://github.com/dekodeinteraktiv/hogan-form"
 msgstr "https://github.com/dekodeinteraktiv/hogan-form"
 
 #. Description of the plugin/theme
-msgid "Form Module for Hogan, requires Gravity Forms."
-msgstr "Skjemamodul for Hogan, krever Gravity Forms."
+msgid "Form Module for Hogan, requires Gravity Forms or Contact Form 7."
+msgstr "Skjemamodul for Hogan, krever Gravity Forms eller Contact Form 7."
 
 #. Author of the plugin/theme
 msgid "Dekode"
@@ -59,3 +50,6 @@ msgstr "Dekode"
 #. Author URI of the plugin/theme
 msgid "https://dekode.no"
 msgstr "https://dekode.no"
+
+#~ msgid "Heading"
+#~ msgstr "Overskrift"
