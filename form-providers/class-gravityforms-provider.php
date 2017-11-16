@@ -108,9 +108,3 @@ class GravityForms_Provider implements Form_Provider {
 		class_exists( '\GFAPI' );
 	}
 }
-
-add_action( 'hogan/module/form/include_providers', function( $module ) {
-	if ( $module instanceof Form ) {
-		$module->register_form_provider( new \Dekode\Hogan\GravityForms_Provider() );
-	}
-} );

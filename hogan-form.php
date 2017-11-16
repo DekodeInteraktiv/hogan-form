@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'plugins_loaded', 'hogan_form_load_textdomain' );
 add_action( 'hogan/include_modules', 'hogan_form_register_module' );
+add_action( 'hogan/module/form/include_providers', 'hogan_form_register_default_form_providers' );
 
 /**
  * Register module text domain
@@ -35,13 +36,25 @@ function hogan_form_load_textdomain() {
  */
 function hogan_form_register_module() {
 
-	// Include Form Provider interface and build in providers.
+	// Include Form Provider interface and module class.
 	require_once 'form-providers/interface-form-provider.php';
-	require_once 'form-providers/class-gravityforms-provider.php';
-	require_once 'form-providers/class-contactform7-provider.php';
-
-	// Include Hogan Module class.
 	require_once 'class-form.php';
 
 	\hogan_register_module( new \Dekode\Hogan\Form() );
+}
+
+/**
+ * Register default form providers
+ *
+ * @param Form $module Object of Form.
+ */
+function hogan_form_register_default_form_providers( $module ) {
+
+	require_once 'form-providers/class-gravityforms-provider.php';
+	//require_once 'form-providers/class-contactform7-provider.php';
+
+	if ( $module instanceof \Dekode\Hogan\Form ) {
+		$module->register_form_provider( new \Dekode\Hogan\GravityForms_Provider() );
+		//$module->register_form_provider( new \Dekode\Hogan\ContactForm7_Provider() );
+	}
 }
