@@ -117,7 +117,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 
 			$form_info = explode( '-', $content['form_info'] );
 
-			if ( is_array( $form_info ) && count( $form_info ) == 2 && intval( $form_info[1] ) > 0 ) {
+			if ( is_array( $form_info ) && count( $form_info ) === 2 && intval( $form_info[1] ) > 0 ) {
+
+				// Set provider identifier, form id and get provider reference based on identifier.
 				$this->selected_provider_identifier = $form_info[0];
 				$this->selected_form_id = intval( $form_info[1] );
 				$this->select_provider = $this->_get_provider( $this->selected_provider_identifier );
