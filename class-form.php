@@ -223,7 +223,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @return bool Whether the plugin is active is registered.
 		 */
 		private function _is_contact_form_7_active() {
-			return apply_filters( 'hogan/module/form/gravityforms/enabled', true) && post_type_exists( 'wpcf7_contact_form' );
+			return apply_filters( 'hogan/module/form/contact_form_7/enabled', true) && post_type_exists( 'wpcf7_contact_form' );
 		}
 
 		/**
