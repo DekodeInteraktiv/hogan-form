@@ -16,25 +16,27 @@
  * @author Dekode
  */
 
+namespace Dekode\Hogan\Form;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-add_action( 'plugins_loaded', 'hogan_form_load_textdomain' );
-add_action( 'hogan/include_modules', 'hogan_form_register_module' );
-add_action( 'hogan/module/form/include_providers', 'hogan_form_register_default_form_providers' );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_textdomain' );
+add_action( 'hogan/include_modules', __NAMESPACE__ . '\\register_module' );
+add_action( 'hogan/module/form/include_providers', __NAMESPACE__ . '\\register_default_form_providers' );
 
 /**
  * Register module text domain
  */
-function hogan_form_load_textdomain() {
+function load_textdomain() {
 	\load_plugin_textdomain( 'hogan-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
 /**
  * Register module in Hogan
  */
-function hogan_form_register_module() {
+function register_module() {
 
 	// Include Form Provider interface and module class.
 	require_once 'form-providers/interface-form-provider.php';
@@ -48,7 +50,7 @@ function hogan_form_register_module() {
  *
  * @param Form $module Object of Form.
  */
-function hogan_form_register_default_form_providers( $module ) {
+function register_default_form_providers( $module ) {
 
 	require_once 'form-providers/class-gravityforms-provider.php';
 	//require_once 'form-providers/class-contactform7-provider.php';
