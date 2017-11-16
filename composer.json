@@ -1,19 +1,18 @@
 {
   "name": "dekodeinteraktiv/hogan-form",
-  "description": "Gravity Forms Module for Hogan",
+  "description": "Form Module for Hogan, requires Gravity Forms or Contact Form 7.",
   "homepage": "https://github.com/dekodeinteraktiv/hogan-form",
   "type": "wordpress-plugin",
   "license": "GPL-3.0",
   "repositories": [
-	  {
-		  "type": "composer",
-		  "url": "https://wpackagist.org"
-	  }
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
   ],
   "require": {
-	  "php": ">=5.5",
-	  "dekodeinteraktiv/hogan-core": "@dev",
-	  "wpackagist-plugin/acf-gravityforms-add-on": "^1.2",
+    "php": ">=5.5",
+    "dekodeinteraktiv/hogan-core": "@dev",
     "composer/installers": "~1.2"
   }
 }

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hogan Module: Form
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
- * Description: Form Module for Hogan, requires Gravity Forms.
+ * Description: Form Module for Hogan, requires Gravity Forms or Contact Form 7.
  * Version: 1.0.0-dev
  * Author: Dekode
  * Author URI: https://dekode.no
@@ -16,20 +16,27 @@
  * @author Dekode
  */
 
+namespace Dekode\Hogan\Form;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 require_once 'class-form.php';
 
-// Only load module if dependant plugins are active.
-if ( function_exists( 'gravity_form' ) && class_exists( 'ACFGravityformsField\Field' ) ) {
+add_action( 'plugins_loaded', __NAMESPACE__ . '\\hogan_load_textdomain' );
+add_action( 'hogan/include_modules', __NAMESPACE__ . '\\hogan_register_module' );
 
-	add_action( 'plugins_loaded', function() {
-		load_plugin_textdomain( 'hogan-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-	} );
+/**
+ * Register module text domain
+ */
+function hogan_load_textdomain() {
+	\load_plugin_textdomain( 'hogan-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
 
-	add_action( 'hogan/include_modules', function() {
-		hogan_register_module( new \Dekode\Hogan\Form() );
-	} );
+/**
+ * Register module in Hogan
+ */
+function hogan_register_module() {
+	\hogan_register_module( new \Dekode\Hogan\Form() );
 }
