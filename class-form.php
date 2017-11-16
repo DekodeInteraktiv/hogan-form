@@ -28,18 +28,25 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		public $heading;
 
 		/**
+		 * Form Provider
+		 *
+		 * @var Form_Provider $select_provider
+		 */
+		public $select_provider;
+
+		/**
 		 * Form Provider identifier, i.e. "gf"
 		 *
-		 * @var string $form_provider_identifier
+		 * @var string $selected_provider_identifier
 		 */
-		public $form_provider_identifier;
+		public $selected_provider_identifier;
 
 		/**
 		 * Select form ID
 		 *
-		 * @var int $form_id
+		 * @var int $selected_form_id
 		 */
-		public $form_id;
+		public $selected_form_id;
 
 		/**
 		 * Form Providers (Objects that implements interface Form_Provider)
@@ -93,7 +100,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @return bool Whether validation of the module is successful / filled with content .
 		 */
 		public function validate_args() {
-			return ! empty( $this->form_provider_identifier ) && intval( $this->form_id ) > 0;
+			return ! empty( $this->selected_provider_identifier ) &&
+				intval( $this->selected_form_id ) > 0 &&
+				$this->select_provider instanceof Form_Provider &&
+				true === $this->select_provider->enabled();
 		}
 
 		/**
@@ -108,8 +118,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 			$form_info = explode( '-', $content['form_info'] );
 
 			if ( is_array( $form_info ) && count( $form_info ) == 2 && intval( $form_info[1] ) > 0 ) {
-				$this->form_provider_identifier = $form_info[0];
-				$this->form_id = intval( $form_info[1] );
+				$this->selected_provider_identifier = $form_info[0];
+				$this->selected_form_id = intval( $form_info[1] );
+				$this->select_provider = $this->_get_provider( $this->selected_provider_identifier );
 			}
 
 			parent::load_args_from_layout_content( $content );
@@ -131,10 +142,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 *
 		 * @return Form_Provider $provider
 		 */
-		private function _get_selected_provider() {
+		private function _get_provider( $identifier ) {
 
 			foreach ( $this->_providers as $provider ) {
-				if ( $this->form_provider_identifier === $provider->get_identifier() ) {
+				if ( $identifier === $provider->get_identifier() ) {
 					return $provider;
 				}
 			}
@@ -154,7 +165,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
 				foreach ( $this->_providers as $provider ) {
-					$choices[ $provider->get_name() ] = $provider->get_forms();
+					if ( true === $provider->enabled() ) {
+						$choices[ $provider->get_name() ] = $provider->get_forms();
+					}
 				}
 			}
 
@@ -168,15 +181,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 */
 		protected function get_form_html() {
 
-			if ( true !== $this->validate_args() ) {
-				return null;
+			if ( true === $this->validate_args() ) {
+				return $this->select_provider->get_form_html( $this->selected_form_id );
 			}
 
-			$provider = $this->_get_selected_provider();
-
-			if ( $provider instanceof Form_Provider ) {
-				return $provider->get_form_html( $this->form_id );
-			}
 		}
 	}
 

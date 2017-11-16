@@ -1,6 +1,6 @@
 <?php
 /**
- * Form module class
+ * Gravity Forms Form Provider class for Hogan Form
  *
  * @package Hogan
  */
@@ -37,12 +37,8 @@ class GravityForms_Provider implements Form_Provider {
 	 */
 	public function get_forms() {
 
-		if ( true !== $this->enabled() ) {
-			return []; // Abort if provider is disabled.
-		}
-
-		$forms = \GFAPI::get_forms();
 		$array = [];
+		$forms = \GFAPI::get_forms();
 
 		if ( is_array( $forms ) && ! empty( $forms ) ) {
 			foreach ( $forms as $form ) {
@@ -61,10 +57,6 @@ class GravityForms_Provider implements Form_Provider {
 	 */
 	public function get_form_html( $id ) {
 
-		if ( true !== $this->enabled() ) {
-			return null; // Abort if provider is disabled.
-		}
-
 		// Get Gravity Forms form.
 		$form = \GFFormsModel::get_form( $id, false );
 
@@ -72,17 +64,15 @@ class GravityForms_Provider implements Form_Provider {
 			return null; // Abort if form doesn't exist or is not published.
 		}
 
-		$args_default = [
+		$args = apply_filters( 'hogan/module/form/gravityforms/options', [], $id );
+		$args = wp_parse_args( $args, [
 			'display_title'       => true,
 			'display_description' => true,
 			'display_inactive'    => false,
 			'field_values'        => null,
 			'ajax'                => false,
 			'tabindex'            => 1,
-		];
-
-		$args = apply_filters( 'hogan/module/form/gravityforms/options', [], $id );
-		$args = wp_parse_args( $args , $args_default );
+		] );
 
 		// Return html for the selected form. Inactive or deleted forms will return empty string.
 		return gravity_form(
