@@ -17,4 +17,4 @@ if ( ! empty( $this->heading ) ) {
 	printf( '<h2>%s</h2>', esc_html( $this->heading ) );
 }
 
-echo $this->form_html;
+echo $this->get_form_html(); // TODO: Escape output.

@@ -21,18 +21,25 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 	class Form extends Module {
 
 		/**
-		 * Form html output for use in template.
-		 *
-		 * @var $form Html content
-		 */
-		public $form_html;
-
-		/**
 		 * Form heading for use in template (optional).
 		 *
 		 * @var $heading
 		 */
 		public $heading;
+
+		/**
+		 * Select form ID
+		 *
+		 * @var $form_id
+		 */
+		public $form_id;
+
+		/**
+		 * Form html output for use in template.
+		 *
+		 * @var $form Html content
+		 */
+		public $form_html;
 
 		/**
 		 * Module constructor.
@@ -44,61 +51,62 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 
 			parent::__construct();
 
-			// Populate select field with options.
-			add_filter( 'acf/load_field/key=' . $this->field_key . '_id', [
-				$this,
-				'acf_load_field_choices',
-			] );
-
+			add_filter( 'hogan/form/form_value/choices', [ $this, 'append_gravity_form_choices' ] );
+			add_action( 'hogan/form/form_value/choices', [ $this, 'append_contact_form_7_choices' ] );
 		}
 
 		/**
-		 * Populate select field with forms items
+		 * Append form choices from Gravity Forms
 		 *
-		 * @param    $field - the field array holding all the field options
-		 *
-		 * @return    $field - the field array holding all the field options
+		 * @param array $choices Array of choices.
 		 */
-		public function acf_load_field_choices( $field ) {
-			// reset choices
-			$field['choices'] = [];
+		public function append_gravity_form_choices( $choices ) {
 
-			// Check for Contact Form 7 and fetch forms
-			if ( true === $this->_is_contact_form_7_active() ) :
-				$args  = [
-					'posts_per_page'         => 30,
-					'no_found_rows'          => true,
-					'update_post_meta_cache' => false,
-					'update_post_term_cache' => false,
-					'post_type'              => 'wpcf7_contact_form',
-				];
-				$query = new \WP_Query( $args );
-				// Check that we have query results and add a field group.
-				if ( $query->have_posts() ) {
-					$field['choices']['Contact Form 7'] = [];
-					while ( $query->have_posts() ) {
-						$query->the_post();
-						// Contents of the queried post results go here.
-						$field['choices']['Contact Form 7'][ 'cf-' . get_the_ID() ] = get_the_title();
-					}
-				}
+			if ( true !== $this->_is_gravityforms_active() ) {
+				return $choices;
+			}
 
-				wp_reset_postdata(); // Restore original post data.
-			endif;
+			$forms = \GFAPI::get_forms();
 
-			// Check for Gravityform and fetch forms
-			if ( true === $this->_is_gravityforms_active() && class_exists( '\GFAPI' ) ) :
-				$forms = \GFAPI::get_forms();
-				if ( is_array( $forms ) && ! empty( $forms ) ) :
-					$field['choices']['Gravityform'] = [];
-					foreach ( $forms as $form ) {
-						$field['choices']['Gravityform'][ 'gf-' . $form['id'] ] = $form['title'];
-					}
-				endif;
-			endif;
+			if ( empty( $forms ) ) {
+				return $choices;
+			}
 
-			// return the field
-			return $field;
+			foreach ( $forms as $form ) {
+				$choices['Gravity Forms'][ 'gf-' . $form['id'] ] = $form['title'];
+			}
+
+			return $choices;
+		}
+
+		/**
+		 * Append form choices from Contact Form 7
+		 *
+		 * @param array $choices Array of choices.
+		 */
+		public function append_contact_form_7_choices( $choices ) {
+
+			if ( true !== $this->_is_contact_form_7_active() ) {
+				return $choices;
+			}
+
+			$forms = get_posts( [
+				'post_type'              => 'wpcf7_contact_form',
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'posts_per_page'         => 30,
+			] );
+
+			if ( empty( $forms ) ) {
+				return $choices;
+			}
+
+			foreach ( $forms as $form ) {
+				$choices['Contact Form 7'][ 'cf-' . $form->ID ] = get_the_title( $form );
+			}
+
+			return $choices;
 		}
 
 		/**
@@ -116,11 +124,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 			$fields[] = [
 				'type'          => 'select',
 				'key'           => $this->field_key . '_id', // hogan_module_form_id.
-				'label'         => esc_html__( 'Choose Form', 'hogan-form' ),
-				'name'          => 'form_value',
-				'instructions'  => '', //todo?
-				'choices'       => [],
-				'default_value' => [],
+				'label'         => __( 'Choose Form', 'hogan-form' ),
+				'name'          => 'form_id',
+				'instructions'  => __( 'Please select the form you want to show', 'hogan-form' ),
+				'choices'       => apply_filters( 'hogan/form/form_value/choices', [] ),
 				'ui'            => 1,
 				'required'      => 1,
 				'ajax'          => 0,
@@ -136,8 +143,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @param array $content The content value.
 		 */
 		public function load_args_from_layout_content( $content ) {
+
 			$this->heading = $content['heading'] ?? null;
-			$this->form_html = $this->get_form_html( $content['form_value'] );
+			$this->form_id = $content['form_id'];
+			$this->form_html = $this->get_form_html( $content['form_id'] );
 
 			parent::load_args_from_layout_content( $content );
 		}
@@ -148,28 +157,28 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @return bool Whether validation of the module is successful / filled with content .
 		 */
 		public function validate_args() {
-			return ! empty( $this->form_html ); //note: could be improved, eg. Missing contact form 7 will return '[contact-form-7 404 "Not Found"]'
+			return ! empty( $this->form_id );
 		}
 
 		/**
 		 * Create html for output
 		 *
-		 * @param $form_value Value from the selected field
-		 *
 		 * @return string|bool
 		 */
-		protected function get_form_html( $form_value ) {
-			//break string into array to find type and id
-			$form_value_array = explode( '-', $form_value ); //E.g. $form_value = 'gf-7'
+		protected function get_form_html() {
 
-			if ( count( $form_value_array ) < 2 || ! intval( $form_value_array[1] ) > 0 ) { // Bail early if the second index of the array is not a number
+			// Split string into array to find type and id.
+			$form_value_array = explode( '-', $this->form_id ); // E.g. $form_value = 'gf-7'.
+
+			if ( count( $form_value_array ) < 2 || ! intval( $form_value_array[1] ) > 0 ) { // Bail early if the second index of the array is not a number.
 				return false;
 			}
 
 			$form_plugin = $form_value_array[0];
 			$form_id     = $form_value_array[1];
 
-			if ( 'gf' === $form_plugin && true === $this->_is_gravityforms_active() && class_exists( '\GFFormsModel' ) ) : //type = Gravityforms and active plugin
+			if ( 'gf' === $form_plugin && true === $this->_is_gravityforms_active() && class_exists( '\GFFormsModel' ) ) : // type = Gravity Forms and active plugin.
+
 				// Check if form is exists and is active
 				$form_info = \GFFormsModel::get_form( $form_id, false );
 
@@ -220,19 +229,20 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		/**
 		 * Check if a Contact Form 7 is an active plugin
 		 *
-		 * @return bool Whether the plugin is active is registered.
+		 * @return bool Whether the plugin is active and available.
 		 */
 		private function _is_contact_form_7_active() {
-			return apply_filters( 'hogan/module/form/contact_form_7/enabled', true) && post_type_exists( 'wpcf7_contact_form' );
+			return apply_filters( 'hogan/module/form/contact_form_7/enabled', true ) && \is_plugin_active( 'contact-form-7/wp-contact-form-7.php' );
 		}
 
 		/**
 		 * Check if a Gravity Forms is an active plugin
 		 *
-		 * @return bool Whether the plugin is active is registered.
+		 * @return bool Whether the plugin is active and available.
 		 */
 		private function _is_gravityforms_active() {
-			return apply_filters( 'hogan/module/form/gravityforms/enabled', true) && is_plugin_active( 'gravityforms/gravityforms.php' );
+			return apply_filters( 'hogan/module/form/gravityforms/enabled', true ) && \is_plugin_active( 'gravityforms/gravityforms.php' ) && class_exists( '\GFAPI' );
 		}
 	}
-} // End if().
+
+}
