@@ -27,7 +27,7 @@ class ContactForm7_Provider implements Form_Provider {
 	 * @return string
 	 */
 	public function get_identifier() {
-		return 'cf';
+		return 'cf7';
 	}
 
 	/**

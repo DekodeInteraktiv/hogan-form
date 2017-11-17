@@ -7,7 +7,7 @@ Install the module using Composer `composer require dekodeinteraktiv/hogan-form`
 Currently supports Gravity Forms and Contact Form 7
 
 ## Available filters
-- `hogan/module/form/gravityform/options` for passing args to the Gravity Forms' render function.
+- `hogan/module/form/gravity_forms/options` for passing args to the Gravity Forms' render function.
 ```
 //default values
 $gs_defaults = [
@@ -23,7 +23,7 @@ $gs_defaults = [
 
 Options returned from the filter will be merged with defaults using `wp_parse_args()`
 ```
-add_filter('hogan/module/form/gravityform/options', function() {
+add_filter('hogan/module/form/gravity_forms/options', function() {
 	return ['display_title' => false];
 });
 ```

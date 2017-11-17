@@ -39,7 +39,7 @@ function load_textdomain() {
 function register_module() {
 
 	// Include Form Provider interface and module class.
-	require_once 'form-providers/interface-form-provider.php';
+	require_once 'includes/interface-form-provider.php';
 	require_once 'class-form.php';
 
 	\hogan_register_module( new \Dekode\Hogan\Form() );
@@ -52,8 +52,8 @@ function register_module() {
  */
 function register_default_form_providers( $module ) {
 
-	require_once 'form-providers/class-gravityforms-provider.php';
-	require_once 'form-providers/class-contactform7-provider.php';
+	require_once 'includes/class-form-provider-gf.php';
+	require_once 'includes/class-form-provider-cf7.php';
 
 	if ( $module instanceof \Dekode\Hogan\Form ) {
 		$module->register_form_provider( new \Dekode\Hogan\GravityForms_Provider() );

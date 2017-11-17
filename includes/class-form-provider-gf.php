@@ -93,7 +93,7 @@ class GravityForms_Provider implements Form_Provider {
 	 * @return boolean
 	 */
 	public function enabled() {
-		return apply_filters( 'hogan/module/form/gravityforms/enabled', true ) &&
+		return apply_filters( 'hogan/module/form/gravity_forms/enabled', true ) &&
 		\is_plugin_active( 'gravityforms/gravityforms.php' ) &&
 		class_exists( '\GFAPI' );
 	}
