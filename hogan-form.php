@@ -52,8 +52,8 @@ function register_module() {
  */
 function register_default_form_providers( $module ) {
 
-	require_once 'includes/class-form-provider-gf.php';
-	require_once 'includes/class-form-provider-cf7.php';
+	require_once 'includes/form-providers/class-gravityforms-provider.php';
+	require_once 'includes/form-providers/class-contactform7-provider.php';
 
 	if ( $module instanceof \Dekode\Hogan\Form ) {
 		$module->register_form_provider( new \Dekode\Hogan\GravityForms_Provider() );
