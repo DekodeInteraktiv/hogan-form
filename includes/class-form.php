@@ -132,7 +132,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		/**
 		 * Get the currently selected Form Provider
 		 *
-		 * @return Form_Provider $provider
+		 * @param string $identifier Provider identifier.
+		 * @return Form_Provider $provider Provider instance.
 		 */
 		private function _get_provider( $identifier ) {
 

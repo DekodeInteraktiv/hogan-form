@@ -15,25 +15,25 @@ class GravityForms_Provider implements Form_Provider {
 	/**
 	 * Get provider full name, i.e. "Gravity Forms"
 	 *
-	 * @return string
+	 * @return string Provider name
 	 */
 	public function get_name() {
 		return 'Gravity Forms';
 	}
 
 	/**
-	 * Get two character provider identifier, i.e. "gf"
+	 * Get provider identifier, i.e. "gf"
 	 *
-	 * @return string
+	 * @return string Provider indentifier
 	 */
 	public function get_identifier() {
 		return 'gf';
 	}
 
 	/**
-	 * Get provider forms as assosiative array
+	 * Get provider forms
 	 *
-	 * @return array
+	 * @return array Forms as array with identifier and form id as key and form title as value, i.e. [ 'gf-1', 'Form Title' ]
 	 */
 	public function get_forms() {
 
@@ -52,8 +52,8 @@ class GravityForms_Provider implements Form_Provider {
 	/**
 	 * Get rendered form HTML
 	 *
-	 * @param int $id Form Id.
-	 * @return string
+	 * @param int $id Form ID.
+	 * @return string Form HTML
 	 */
 	public function get_form_html( $id ) {
 
@@ -88,9 +88,9 @@ class GravityForms_Provider implements Form_Provider {
 	}
 
 	/**
-	 * Return if the provider is active or not
+	 * Finds whether a provider is enabled
 	 *
-	 * @return boolean
+	 * @return boolean Returns TRUE if provider is enabled, FALSE otherwise.
 	 */
 	public function enabled() {
 		return apply_filters( 'hogan/module/form/gravity_forms/enabled', true ) &&
