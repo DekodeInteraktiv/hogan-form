@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e0561b388bf5f01815f9afbcb639ae4",
+    "content-hash": "1920c8ead864092f19c9a2a17c9804cd",
     "packages": [
         {
             "name": "composer/installers",
@@ -129,12 +129,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/DekodeInteraktiv/hogan-core.git",
-                "reference": "c10d95d6979e264f45e62a353056ad401184d371"
+                "reference": "b04480d2c7fa2c42c9a7caa1c3fc06c2297ae2aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/c10d95d6979e264f45e62a353056ad401184d371",
-                "reference": "c10d95d6979e264f45e62a353056ad401184d371",
+                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/b04480d2c7fa2c42c9a7caa1c3fc06c2297ae2aa",
+                "reference": "b04480d2c7fa2c42c9a7caa1c3fc06c2297ae2aa",
                 "shasum": ""
             },
             "require": {
@@ -148,27 +148,7 @@
             ],
             "description": "Modular Flexible Content System for ACF Pro",
             "homepage": "https://github.com/DekodeInteraktiv/hogan-core",
-            "time": "2017-10-28T11:28:17+00:00"
-        },
-        {
-            "name": "wpackagist-plugin/acf-gravityforms-add-on",
-            "version": "1.2.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/acf-gravityforms-add-on/",
-                "reference": "tags/1.2.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/acf-gravityforms-add-on.1.2.1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/acf-gravityforms-add-on/"
+            "time": "2017-11-16T10:01:02+00:00"
         }
     ],
     "packages-dev": [],
