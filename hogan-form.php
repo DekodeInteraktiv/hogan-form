@@ -40,7 +40,7 @@ function register_module() {
 
 	// Include Form Provider interface and module class.
 	require_once 'includes/interface-form-provider.php';
-	require_once 'class-form.php';
+	require_once 'includes/class-form.php';
 
 	\hogan_register_module( new \Dekode\Hogan\Form() );
 }
