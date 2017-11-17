@@ -38,19 +38,24 @@ class ContactForm7_Provider implements Form_Provider {
 	public function get_forms() {
 
 		$array = [];
-		$forms = get_posts( [
+
+		$query = new \WP_Query( [
 			'post_type'              => 'wpcf7_contact_form',
+			'orderby'                => 'title',
 			'no_found_rows'          => true,
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
-			'posts_per_page'         => 30,
+			'posts_per_page'         => 50,
 		] );
 
-		if ( is_array( $forms ) && ! empty( $forms ) ) {
-			foreach ( $forms as $form ) {
-				$array[ $this->get_identifier() . '-' . $form->ID ] = get_the_title( $form );
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$array[ $this->get_identifier() . '-' . get_the_ID() ] = get_the_title();
 			}
 		}
+
+		wp_reset_postdata();
 
 		return $array;
 	}
