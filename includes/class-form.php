@@ -35,13 +35,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		public $select_provider;
 
 		/**
-		 * Form Provider identifier, i.e. "gf"
-		 *
-		 * @var string $selected_provider_identifier
-		 */
-		public $selected_provider_identifier;
-
-		/**
 		 * Select form ID
 		 *
 		 * @var int $selected_form_id
@@ -100,8 +93,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @return bool Whether validation of the module is successful / filled with content .
 		 */
 		public function validate_args() {
-			return ! empty( $this->selected_provider_identifier ) &&
-				intval( $this->selected_form_id ) > 0 &&
+			return intval( $this->selected_form_id ) > 0 &&
 				$this->select_provider instanceof Form_Provider &&
 				true === $this->select_provider->enabled();
 		}
@@ -118,11 +110,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 			$form_info = explode( '-', $content['form_info'] );
 
 			if ( is_array( $form_info ) && count( $form_info ) === 2 && intval( $form_info[1] ) > 0 ) {
-
-				// Set provider identifier, form id and get provider reference based on identifier.
-				$this->selected_provider_identifier = $form_info[0];
+				// Set provider and form id.
+				$this->select_provider = $this->_get_provider( $form_info[0] );
 				$this->selected_form_id = intval( $form_info[1] );
-				$this->select_provider = $this->_get_provider( $this->selected_provider_identifier );
 			}
 
 			parent::load_args_from_layout_content( $content );
