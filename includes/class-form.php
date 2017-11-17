@@ -168,7 +168,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
 				foreach ( $this->_providers as $provider ) {
 					if ( true === $provider->enabled() ) {
-						$choices[ $provider->get_name() ] = $provider->get_forms();
+						$provider_forms = $provider->get_forms();
+
+						if ( is_array( $provider_forms ) && ! empty( $provider_forms ) ) {
+							$choices[ $provider->get_name() ] = $provider_forms;
+						}
 					}
 				}
 			}
