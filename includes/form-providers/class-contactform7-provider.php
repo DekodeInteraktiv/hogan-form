@@ -7,6 +7,10 @@
 
 namespace Dekode\Hogan;
 
+if ( ! \interface_exists( '\\Dekode\\Hogan\\Form_Provider' ) ) {
+	return;
+}
+
 /**
  * Contact Form 7 Form Provider class for Hogan Form
  */

@@ -7,6 +7,10 @@
 
 namespace Dekode\Hogan;
 
+if ( ! \interface_exists( '\\Dekode\\Hogan\\Form_Provider' ) ) {
+	return;
+}
+
 /**
  * Ninja Forms Form Provider class for Hogan Form
  */
