@@ -155,7 +155,10 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 */
 		private function _get_select_field_choices() {
 
-			do_action( 'hogan/module/form/include_providers', $this );
+			// Include Form Provider interface before including form providers.
+			require_once 'interface-form-provider.php';
+
+			do_action( 'hogan/module/form/register_providers', $this );
 			$choices = [];
 
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
