@@ -72,8 +72,9 @@ class NinjaForms_Provider implements Form_Provider {
 	 * @return boolean Returns TRUE if provider is enabled, FALSE otherwise.
 	 */
 	public function enabled() {
-		return apply_filters( 'hogan/module/form/ninja_forms/enabled', true ) &&
+		return function_exists( 'is_plugin_active' ) &&
 		\is_plugin_active( 'ninja-forms/ninja-forms.php' ) &&
-		class_exists( 'Ninja_Forms' );
+		class_exists( 'Ninja_Forms' ) &&
+		apply_filters( 'hogan/module/form/ninja_forms/enabled', true );
 	}
 }
