@@ -97,6 +97,10 @@ class GravityForms_Provider implements Form_Provider {
 	 * @return boolean Returns TRUE if provider is enabled, FALSE otherwise.
 	 */
 	public function enabled() {
+
+		// https://codex.wordpress.org/Function_Reference/is_plugin_active .
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 		return function_exists( 'is_plugin_active' ) &&
 		\is_plugin_active( 'gravityforms/gravityforms.php' ) &&
 		class_exists( '\GFAPI' ) &&
