@@ -64,6 +64,8 @@ class NinjaForms_Provider implements Form_Provider {
 		if ( ! empty( Ninja_Forms()->form( $id )->get_fields() ) ) {
 			return sprintf( '[ninja_form id=%s]', $id );
 		}
+
+		return '';
 	}
 
 	/**

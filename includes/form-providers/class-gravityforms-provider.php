@@ -65,7 +65,7 @@ class GravityForms_Provider implements Form_Provider {
 		$form = \GFFormsModel::get_form( $id, false );
 
 		if ( empty( $form ) || ! $form->is_active ) {
-			return null; // Abort if form doesn't exist or is not published.
+			return ''; // Abort if form doesn't exist or is not published.
 		}
 
 		$args = apply_filters( 'hogan/module/form/gravityforms/options', [], $id );

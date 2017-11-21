@@ -77,6 +77,8 @@ class ContactForm7_Provider implements Form_Provider {
 		if ( $form instanceof \WP_Post && 'wpcf7_contact_form' === $form->post_type ) {
 			return do_shortcode( '[contact-form-7 id="' . $id . '"]' );
 		}
+
+		return '';
 	}
 
 	/**
