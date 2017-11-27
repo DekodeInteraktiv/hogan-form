@@ -1,6 +1,6 @@
 {
   "name": "dekodeinteraktiv/hogan-form",
-  "description": "Form Module for Hogan, requires Gravity Forms or Contact Form 7.",
+  "description": "Form Module for Hogan, requires Gravity Forms, Contact Form 7 or Ninja Forms.",
   "homepage": "https://github.com/dekodeinteraktiv/hogan-form",
   "type": "wordpress-plugin",
   "license": "GPL-3.0",
@@ -11,8 +11,8 @@
     }
   ],
   "require": {
-    "php": ">=5.5",
-    "dekodeinteraktiv/hogan-core": "@dev",
-    "composer/installers": "~1.2"
+    "php": ">=7",
+    "composer/installers": "~1.2",
+    "dekodeinteraktiv/hogan-core": "^1"
   }
 }
