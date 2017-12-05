@@ -5,6 +5,7 @@
  * @package Hogan
  */
 
+declare( strict_types = 1 );
 namespace Dekode\Hogan;
 
 if ( ! \interface_exists( '\\Dekode\\Hogan\\Form_Provider' ) ) {
@@ -21,7 +22,7 @@ class ContactForm7_Provider implements Form_Provider {
 	 *
 	 * @return string Provider name
 	 */
-	public function get_name() {
+	public function get_name() : string {
 		return 'Contact Form 7';
 	}
 
@@ -30,7 +31,7 @@ class ContactForm7_Provider implements Form_Provider {
 	 *
 	 * @return string Provider indentifier
 	 */
-	public function get_identifier() {
+	public function get_identifier() : string {
 		return 'cf7';
 	}
 
@@ -39,7 +40,7 @@ class ContactForm7_Provider implements Form_Provider {
 	 *
 	 * @return array Forms as array with identifier and form id as key and form title as value, i.e. [ 'gf-1', 'Form Title' ]
 	 */
-	public function get_forms() {
+	public function get_forms() : array {
 
 		$array = [];
 
@@ -70,7 +71,7 @@ class ContactForm7_Provider implements Form_Provider {
 	 * @param int $id Form ID.
 	 * @return string Form HTML
 	 */
-	public function get_form_html( $id ) {
+	public function get_form_html( int $id ) : string {
 
 		$form = get_post( $id );
 
@@ -84,9 +85,9 @@ class ContactForm7_Provider implements Form_Provider {
 	/**
 	 * Finds whether a provider is enabled
 	 *
-	 * @return boolean Returns TRUE if provider is enabled, FALSE otherwise.
+	 * @return bool Returns TRUE if provider is enabled, FALSE otherwise.
 	 */
-	public function enabled() {
+	public function enabled() : bool {
 
 		// https://codex.wordpress.org/Function_Reference/is_plugin_active .
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );

@@ -5,13 +5,14 @@
  * @package Hogan
  */
 
+declare( strict_types = 1 );
 namespace Dekode\Hogan;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
+if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan\\Module' ) ) {
 
 	/**
 	 * Form module class (Gravity Form or Contact Form 7).
@@ -64,7 +65,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 *
 		 * @return array $fields Fields for this module
 		 */
-		public function get_fields() {
+		public function get_fields() : array {
 
 			$fields = [];
 
@@ -92,7 +93,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 *
 		 * @return bool Whether validation of the module is successful / filled with content .
 		 */
-		public function validate_args() {
+		public function validate_args() : bool {
 			return intval( $this->selected_form_id ) > 0 &&
 				$this->select_provider instanceof Form_Provider &&
 				true === $this->select_provider->enabled();
@@ -135,7 +136,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 * @param string $identifier Provider identifier.
 		 * @return Form_Provider|null $provider Provider instance.
 		 */
-		private function _get_provider( $identifier ) {
+		private function _get_provider( string $identifier ) {
 
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
 				foreach ( $this->_providers as $provider ) {
@@ -153,7 +154,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		 *
 		 * @return array $choices
 		 */
-		private function _get_select_field_choices() {
+		private function _get_select_field_choices() : array {
 
 			// Include Form Provider interface before including form providers.
 			require_once 'interface-form-provider.php';
@@ -177,11 +178,11 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) ) {
 		}
 
 		/**
-		 * Create html for output
+		 * Get Form HTML
 		 *
-		 * @return string
+		 * @return string Form HTML
 		 */
-		protected function get_form_html() {
+		protected function get_form_html() : string {
 
 			if ( true === $this->validate_args() ) {
 				return $this->select_provider->get_form_html( $this->selected_form_id );

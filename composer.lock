@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b40607603b0dd2c9dc8a45891c7fc980",
+    "content-hash": "df3a3ffaf440a7c71da282def599d338",
     "packages": [
         {
             "name": "composer/installers",
@@ -125,16 +125,16 @@
         },
         {
             "name": "dekodeinteraktiv/hogan-core",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DekodeInteraktiv/hogan-core.git",
-                "reference": "97944b46a0d07c80ff5f04f08f376a178c8991f0"
+                "reference": "3a0c57b06370db9edea23e9c36b1865f9cb20493"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/97944b46a0d07c80ff5f04f08f376a178c8991f0",
-                "reference": "97944b46a0d07c80ff5f04f08f376a178c8991f0",
+                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/3a0c57b06370db9edea23e9c36b1865f9cb20493",
+                "reference": "3a0c57b06370db9edea23e9c36b1865f9cb20493",
                 "shasum": ""
             },
             "require": {
@@ -148,7 +148,7 @@
             ],
             "description": "Modular Flexible Content System for ACF Pro",
             "homepage": "https://github.com/DekodeInteraktiv/hogan-core",
-            "time": "2017-11-27T09:51:53+00:00"
+            "time": "2017-11-28T10:34:35+00:00"
         }
     ],
     "packages-dev": [],
@@ -158,7 +158,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }

@@ -2,8 +2,9 @@
 /**
  * Plugin Name: Hogan Module: Form
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
- * Description: Form Module for Hogan, requires Gravity Forms or Contact Form 7.
- * Version: 1.0.1
+ * GitHub Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
+ * Description: Form Module for Hogan, requires Gravity Forms, Contact Form 7 or Ninja Forms.
+ * Version: 1.0.2
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0
@@ -16,6 +17,7 @@
  * @author Dekode
  */
 
+declare( strict_types = 1 );
 namespace Dekode\Hogan\Form;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -46,13 +48,9 @@ function register_module() {
 /**
  * Register default form providers
  *
- * @param Form $module Object of Form.
+ * @param \Dekode\Hogan\Form $module Form instance.
  */
-function register_default_form_providers( $module ) {
-
-	if ( ! ( $module instanceof \Dekode\Hogan\Form ) ) {
-		return;
-	}
+function register_default_form_providers( \Dekode\Hogan\Form $module ) {
 
 	require_once 'includes/form-providers/class-contactform7-provider.php';
 	require_once 'includes/form-providers/class-gravityforms-provider.php';
