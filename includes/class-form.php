@@ -1,6 +1,6 @@
 <?php
 /**
- * Form module class
+ * Form module class.
  *
  * @package Hogan
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan\\Module' ) ) {
 
 	/**
-	 * Form module class (Gravity Form or Contact Form 7).
+	 * Form module class.
 	 *
 	 * @extends Modules base class.
 	 */
@@ -91,7 +91,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		/**
 		 * Validate module content before template is loaded.
 		 *
-		 * @return bool Whether validation of the module is successful / filled with content .
+		 * @return bool Whether validation of the module is successful / filled with content.
 		 */
 		public function validate_args() : bool {
 			return intval( $this->selected_form_id ) > 0 &&

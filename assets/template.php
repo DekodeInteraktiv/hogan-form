@@ -1,6 +1,6 @@
 <?php
 /**
- * Form Module tempalte
+ * Form Module template
  *
  * $this is an instace of the Form object.
  *
@@ -13,6 +13,7 @@
  * @package Hogan
  */
 
+declare( strict_types = 1 );
 namespace Dekode\Hogan;
 
 if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Form ) ) {
