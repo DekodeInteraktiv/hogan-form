@@ -22,13 +22,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 	class Form extends Module {
 
 		/**
-		 * Form heading for use in template (optional).
-		 *
-		 * @var string $heading
-		 */
-		public $heading;
-
-		/**
 		 * Form Provider
 		 *
 		 * @var Form_Provider $select_provider
@@ -100,15 +93,15 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		}
 
 		/**
-		 * Map fields to object variable.
+		 * Map raw fields from acf to object variable.
 		 *
-		 * @param array $content The content value.
+		 * @param array $raw_content Content values.
+		 * @param int   $counter Module location in page layout.
+		 * @return void
 		 */
-		public function load_args_from_layout_content( $content ) {
+		public function load_args_from_layout_content( array $raw_content, int $counter = 0 ) {
 
-			$this->heading = $content['heading'] ?? null;
-
-			$form_info = explode( '-', $content['form_info'] );
+			$form_info = explode( '-', $raw_content['form_info'] );
 
 			if ( is_array( $form_info ) && count( $form_info ) === 2 && intval( $form_info[1] ) > 0 ) {
 				// Set provider and form id.
@@ -116,18 +109,17 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 				$this->selected_form_id = intval( $form_info[1] );
 			}
 
-			parent::load_args_from_layout_content( $content );
+			parent::load_args_from_layout_content( $raw_content, $counter );
 		}
 
 		/**
 		 * Register a Form provider
 		 *
 		 * @param Form_Provider $provider Object that implements interface Form_Provider.
+		 * @return void
 		 */
-		public function register_form_provider( $provider ) {
-			if ( $provider instanceof Form_Provider ) {
-				$this->_providers[] = $provider;
-			}
+		public function register_form_provider( Form_Provider $provider ) {
+			$this->_providers[] = $provider;
 		}
 
 		/**
