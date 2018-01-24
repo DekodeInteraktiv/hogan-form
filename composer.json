@@ -3,7 +3,7 @@
   "description": "Form Module for Hogan, requires Gravity Forms, Contact Form 7 or Ninja Forms.",
   "homepage": "https://github.com/dekodeinteraktiv/hogan-form",
   "type": "wordpress-plugin",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "repositories": [
     {
       "type": "composer",

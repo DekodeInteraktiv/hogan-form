@@ -7,7 +7,7 @@
  * Version: 1.0.3
  * Author: Dekode
  * Author URI: https://dekode.no
- * License: GPL-3.0
+ * License: GPL-3.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
  *
  * Text Domain: hogan-form
