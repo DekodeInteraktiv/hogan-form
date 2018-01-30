@@ -21,7 +21,9 @@ if ( ! defined( 'ABSPATH' ) || ! ( $this instanceof Form ) ) {
 }
 
 if ( ! empty( $this->heading ) ) {
-	printf( '<h2>%s</h2>', esc_html( $this->heading ) );
+	hogan_component( 'heading', [
+		'title' => $this->heading,
+	] );
 }
 
 // @codingStandardsIgnoreStart
