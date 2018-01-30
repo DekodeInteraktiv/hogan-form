@@ -24,6 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+define( 'HOGAN_FORM_PATH', plugin_dir_path( __FILE__ ) );
+
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_textdomain' );
 add_action( 'hogan/include_modules', __NAMESPACE__ . '\\register_module' );
 add_action( 'hogan/module/form/register_providers', __NAMESPACE__ . '\\register_default_form_providers' );
