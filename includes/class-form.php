@@ -48,7 +48,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		public function __construct() {
 
 			$this->label    = __( 'Form', 'hogan-form' );
-			$this->template = __DIR__ . '/../assets/template.php';
+			$this->template = HOGAN_FORM_PATH . 'assets/template.php';
 
 			parent::__construct();
 		}
