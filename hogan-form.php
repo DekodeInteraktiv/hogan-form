@@ -61,6 +61,7 @@ function register_default_form_providers( \Dekode\Hogan\Form $module ) {
 	require_once 'includes/form-providers/class-contactform7-provider.php';
 	require_once 'includes/form-providers/class-gravityforms-provider.php';
 	require_once 'includes/form-providers/class-ninjaforms-provider.php';
+	require_once 'includes/form-providers/class-mailpoet-provider.php';
 
 	if ( class_exists( '\\Dekode\\Hogan\\ContactForm7_Provider' ) ) {
 		$module->register_form_provider( new \Dekode\Hogan\ContactForm7_Provider() );
@@ -72,5 +73,9 @@ function register_default_form_providers( \Dekode\Hogan\Form $module ) {
 
 	if ( class_exists( '\\Dekode\\Hogan\\NinjaForms_Provider' ) ) {
 		$module->register_form_provider( new \Dekode\Hogan\NinjaForms_Provider() );
+	}
+
+	if ( class_exists( '\\Dekode\\Hogan\\MailPoet_Provider' ) ) {
+		$module->register_form_provider( new \Dekode\Hogan\MailPoet_Provider() );
 	}
 }
