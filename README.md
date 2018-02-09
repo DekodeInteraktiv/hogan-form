@@ -27,3 +27,8 @@ add_filter('hogan/module/form/gravity_forms/options', function() {
 	return ['display_title' => false];
 });
 ```
+
+## Changelog
+
+## 1.0.6
+- Changed default values for Gravity forms: form title and description not included by default. 
