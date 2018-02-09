@@ -71,8 +71,8 @@ class GravityForms_Provider implements Form_Provider {
 
 		$args = apply_filters( 'hogan/module/form/gravityforms/options', [], $id );
 		$args = wp_parse_args( $args, [
-			'display_title'       => true,
-			'display_description' => true,
+			'display_title'       => false,
+			'display_description' => false,
 			'display_inactive'    => false,
 			'field_values'        => null,
 			'ajax'                => false,
