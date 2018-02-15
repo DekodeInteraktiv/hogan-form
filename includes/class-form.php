@@ -62,9 +62,6 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 
 			$fields = [];
 
-			// Heading field can be disabled using filter hogan/module/form/heading/enabled (true/false).
-			hogan_append_heading_field( $fields, $this );
-
 			$fields[] = [
 				'type'          => 'select',
 				'key'           => $this->field_key . '_id', // hogan_module_form_id.
