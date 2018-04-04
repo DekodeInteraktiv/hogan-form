@@ -68,7 +68,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 				'label'         => __( 'Choose Form', 'hogan-form' ),
 				'name'          => 'form_info',
 				'instructions'  => __( 'Please select the form you want to show', 'hogan-form' ),
-				'choices'       => $this->_get_select_field_choices(),
+				'choices'       => $this->get_select_field_choices(),
 				'ui'            => 1,
 				'required'      => 1,
 				'ajax'          => 0,
@@ -102,7 +102,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 
 			if ( is_array( $form_info ) && count( $form_info ) === 2 && intval( $form_info[1] ) > 0 ) {
 				// Set provider and form id.
-				$this->select_provider = $this->_get_provider( $form_info[0] );
+				$this->select_provider  = $this->get_provider( $form_info[0] );
 				$this->selected_form_id = intval( $form_info[1] );
 			}
 
@@ -125,7 +125,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		 * @param string $identifier Provider identifier.
 		 * @return Form_Provider|null $provider Provider instance.
 		 */
-		private function _get_provider( string $identifier ) {
+		private function get_provider( string $identifier ) {
 
 			if ( is_array( $this->_providers ) && ! empty( $this->_providers ) ) {
 				foreach ( $this->_providers as $provider ) {
@@ -143,7 +143,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		 *
 		 * @return array $choices
 		 */
-		private function _get_select_field_choices() : array {
+		private function get_select_field_choices() : array {
 
 			// Include Form Provider interface before including form providers.
 			require_once 'interface-form-provider.php';
