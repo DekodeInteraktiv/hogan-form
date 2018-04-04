@@ -13,6 +13,6 @@
   "require": {
     "php": ">=7.0",
     "composer/installers": "~1.2",
-    "dekodeinteraktiv/hogan-core": "^1.0"
+    "dekodeinteraktiv/hogan-core": ">=1.1.7"
   }
 }

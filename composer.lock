@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df3a3ffaf440a7c71da282def599d338",
+    "content-hash": "d708b989d9e8e52be835c94597fc61a0",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b"
+                "reference": "049797d727261bf27f2690430d935067710049c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
-                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/049797d727261bf27f2690430d935067710049c2",
+                "reference": "049797d727261bf27f2690430d935067710049c2",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,7 @@
             },
             "require-dev": {
                 "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "4.1.*"
+                "phpunit/phpunit": "^4.8.36"
             },
             "type": "composer-plugin",
             "extra": {
@@ -100,15 +100,18 @@
                 "lavalite",
                 "lithium",
                 "magento",
+                "majima",
                 "mako",
                 "mediawiki",
                 "modulework",
+                "modx",
                 "moodle",
                 "osclass",
                 "phpbb",
                 "piwik",
                 "ppi",
                 "puppet",
+                "pxcms",
                 "reindex",
                 "roundcube",
                 "shopware",
@@ -121,34 +124,37 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2017-08-09T07:53:48+00:00"
+            "time": "2017-12-29T09:13:20+00:00"
         },
         {
             "name": "dekodeinteraktiv/hogan-core",
-            "version": "1.0.3",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DekodeInteraktiv/hogan-core.git",
-                "reference": "010ce97f21587722e4d8c2c70860a49323647d29"
+                "reference": "46d5dd20ad7388ee014bc74efdde9261bb2c2ac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/010ce97f21587722e4d8c2c70860a49323647d29",
-                "reference": "010ce97f21587722e4d8c2c70860a49323647d29",
+                "url": "https://api.github.com/repos/DekodeInteraktiv/hogan-core/zipball/46d5dd20ad7388ee014bc74efdde9261bb2c2ac0",
+                "reference": "46d5dd20ad7388ee014bc74efdde9261bb2c2ac0",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.2",
                 "php": ">=7.0"
             },
+            "require-dev": {
+                "dekodeinteraktiv/coding-standards": "^0.3.1"
+            },
             "type": "wordpress-plugin",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0"
+                "GPL-3.0-or-later"
             ],
             "description": "Modular Flexible Content System for ACF Pro",
             "homepage": "https://github.com/DekodeInteraktiv/hogan-core",
-            "time": "2017-12-06T08:05:41+00:00"
+            "time": "2018-04-04T09:25:18+00:00"
         }
     ],
     "packages-dev": [],
