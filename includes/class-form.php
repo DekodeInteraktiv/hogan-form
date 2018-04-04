@@ -24,9 +24,9 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		/**
 		 * Form Provider
 		 *
-		 * @var Form_Provider $select_provider
+		 * @var Form_Provider $selected_provider
 		 */
-		public $select_provider;
+		public $selected_provider;
 
 		/**
 		 * Select form ID
@@ -85,8 +85,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		 */
 		public function validate_args() : bool {
 			return intval( $this->selected_form_id ) > 0 &&
-				$this->select_provider instanceof Form_Provider &&
-				true === $this->select_provider->enabled();
+				$this->selected_provider instanceof Form_Provider &&
+				true === $this->selected_provider->enabled();
 		}
 
 		/**
@@ -102,8 +102,8 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 
 			if ( is_array( $form_info ) && count( $form_info ) === 2 && intval( $form_info[1] ) > 0 ) {
 				// Set provider and form id.
-				$this->select_provider  = $this->get_provider( $form_info[0] );
-				$this->selected_form_id = intval( $form_info[1] );
+				$this->selected_provider = $this->get_provider( $form_info[0] );
+				$this->selected_form_id  = intval( $form_info[1] );
 			}
 
 			parent::load_args_from_layout_content( $raw_content, $counter );
@@ -174,7 +174,7 @@ if ( ! class_exists( '\\Dekode\\Hogan\\Form' ) && class_exists( '\\Dekode\\Hogan
 		protected function get_form_html() : string {
 
 			if ( true === $this->validate_args() ) {
-				return $this->select_provider->get_form_html( $this->selected_form_id );
+				return $this->selected_provider->get_form_html( $this->selected_form_id );
 			}
 
 		}
