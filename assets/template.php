@@ -2,10 +2,10 @@
 /**
  * Form Module template
  *
- * $this is an instace of the Form object.
+ * $this is an instance of the Form object.
  *
  * Available properties:
- * $this->select_provider (Form_Provider) Form provider object.
+ * $this->selected_provider (Form_Provider) Form provider object.
  * $this->selected_form_id (int) Form ID.
  * $this->get_form_html() (string) Form HTML from provider.
  *

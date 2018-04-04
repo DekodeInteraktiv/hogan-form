@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
  * GitHub Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
  * Description: Form Module for Hogan, requires Gravity Forms, Contact Form 7, Ninja Forms or MailPoet Forms.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0-or-later
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'HOGAN_FORM_PATH', plugin_dir_path( __FILE__ ) );
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_textdomain' );
-add_action( 'hogan/include_modules', __NAMESPACE__ . '\\register_module' );
+add_action( 'hogan/include_modules', __NAMESPACE__ . '\\register_module', 10, 1 );
 add_action( 'hogan/module/form/register_providers', __NAMESPACE__ . '\\register_default_form_providers' );
 
 /**
@@ -42,13 +42,12 @@ function load_textdomain() {
 /**
  * Register module in Hogan
  *
+ * @param \Dekode\Hogan\Core $core Hogan Core instance.
  * @return void
  */
-function register_module() {
-
-	// Include form and register module class.
+function register_module( \Dekode\Hogan\Core $core ) {
 	require_once 'includes/class-form.php';
-	\hogan_register_module( new \Dekode\Hogan\Form() );
+	$core->register_module( new \Dekode\Hogan\Form() );
 }
 
 /**

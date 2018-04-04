@@ -100,7 +100,7 @@ class GravityForms_Provider implements Form_Provider {
 	public function enabled() : bool {
 
 		// https://codex.wordpress.org/Function_Reference/is_plugin_active .
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 		return function_exists( 'is_plugin_active' ) &&
 		\is_plugin_active( 'gravityforms/gravityforms.php' ) &&
