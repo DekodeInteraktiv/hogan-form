@@ -44,6 +44,9 @@ class ContactForm7_Provider implements Form_Provider {
 
 		$array = [];
 
+		global $post;
+		$old_post = $post;
+
 		$query = new \WP_Query( [
 			'post_type'              => 'wpcf7_contact_form',
 			'orderby'                => 'title',
@@ -61,6 +64,7 @@ class ContactForm7_Provider implements Form_Provider {
 		}
 
 		wp_reset_postdata();
+		$post = $old_post;
 
 		return $array;
 	}
