@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
  * GitHub Plugin URI: https://github.com/dekodeinteraktiv/hogan-form
  * Description: Form Module for Hogan, requires Gravity Forms, Contact Form 7, Ninja Forms or MailPoet Forms.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: Dekode
  * Author URI: https://dekode.no
  * License: GPL-3.0-or-later

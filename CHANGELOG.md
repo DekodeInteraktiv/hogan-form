@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.3
+- Fixes the post reset problem [#19](https://github.com/DekodeInteraktiv/hogan-form/pull/19)
+
 ## 1.1.2
 - Fixed missing call to `do_shortcode()` for Ninja Forms causing only the shortcode tag to rendered.
 
