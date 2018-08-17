@@ -44,23 +44,12 @@ class ContactForm7_Provider implements Form_Provider {
 
 		$array = [];
 
-		$query = new \WP_Query( [
-			'post_type'              => 'wpcf7_contact_form',
-			'orderby'                => 'title',
-			'no_found_rows'          => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-			'posts_per_page'         => 50,
-		] );
-
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				$array[ $this->get_identifier() . '-' . get_the_ID() ] = get_the_title();
-			}
+		foreach ( get_posts( [
+			'post_type' => 'wpcf7_contact_form',
+			'orderby'   => 'title',
+		] ) as $form ) {
+			$array[ $this->get_identifier() . '-' . $form->ID ] = get_the_title( $form );
 		}
-
-		wp_reset_postdata();
 
 		return $array;
 	}
